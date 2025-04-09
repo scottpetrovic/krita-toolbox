@@ -13,5 +13,8 @@ Click the associated toolbutton to activate the tool, press and hold to open the
 Click or drag onto the subtool to select.
 Right click to be amazed with options.
 
+## Uninstall
+Go to the main menu Settings > Manage Resources. Click "Open Resources folder". Go inside the pykrita folder. Then delete the "toolkitdocker" folder and the toolkitdocker.desktop file.
+
 ## Feedback
 I'm @scottyp on Krita Artists (https://krita-artists.org/). Feel free to create a PR on this repository.

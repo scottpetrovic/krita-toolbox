@@ -33,7 +33,6 @@ class CategorySelect(QWidget):
 
         self.config_layout.addLayout(self.header_row)
         self.config_layout.addLayout(self.columns)
-        self.config_layout.addWidget(QPushButton("Pop"))
 
         self.containers = {}
 

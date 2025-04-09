@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt, QRect, QPoint, QSize
 
 class FlowLayout(QLayout):
 
-    def __init__(self, parent = None, margin = 0, spacing = 20):
+    def __init__(self, parent = None, margin = 0, spacing = 10):
         super().__init__(parent)
         self.margin = margin
 
