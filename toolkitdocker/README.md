@@ -1,4 +1,4 @@
-# ToolKit
+# ToolKit (Readme shown in Krita)
 #### ToolKit acts as a minimal toolbox to store Krita's tools.
 ## Start
 Once you have the .zip file, in Krita go to Tools -> Scripts -> Import Python Plugin.
