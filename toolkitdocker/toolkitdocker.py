@@ -35,9 +35,15 @@ class delayClass:
     def __init__(self, delayValue: int):
         self.value = delayValue
 
+# Loads the icon size set by user
+class iconSizeClass:
+
+    def __init__(self, iconSize: int):
+        self.value = iconSize
+
 
 menu_delayValue = delayClass(jsonMethod.loadJSON()["delayValue"])
-
+menu_iconSizeValue = iconSizeClass(jsonMethod.loadJSON()["iconSize"])
 
 class TKStyle(QProxyStyle):
     """
@@ -146,6 +152,14 @@ class SettingsWidget(QWidget):
         """
         Set up second tab
         """
+        # icon size
+        self.iconSizeBox = QSpinBox()
+        self.iconSizeBox.setRange(10, 30)
+        self.iconSizeBox.setSingleStep(1)
+        self.iconSizeBox.setValue(menu_iconSizeValue.value)
+        self.iconSizeBox.setSuffix("px")
+
+
         # Create submenu delay time input
         self.subMenuDelay = QSpinBox()
         self.subMenuDelay.setRange(0, 1000)
@@ -157,7 +171,8 @@ class SettingsWidget(QWidget):
         self.subButtonBox = QCheckBox()
         self.subButtonBox.setChecked(jsonMethod.existing_data["submenuButton"])
         
-        self.tab2.layout.addRow(i18n("&Submenu Delay:"), self.subMenuDelay)
+        self.tab2.layout.addRow(i18n("&Icon Size (changes on restart):"), self.iconSizeBox)
+        self.tab2.layout.addRow(i18n("&Submenu Delay:"), self.subMenuDelay)        
         self.tab2.layout.addRow(i18n("&Submenu Button:"), self.subButtonBox)
 
         self.tab2.setLayout(self.tab2.layout)
@@ -170,7 +185,7 @@ class SettingsWidget(QWidget):
         # Create "OK" button
         self.acceptButton = QPushButton(i18n("OK"))
         self.acceptButton.clicked.connect(self.parentWidget().close)
-        self.acceptButton.clicked.connect(self.changeDelay)
+        self.acceptButton.clicked.connect(self.updateSettingsAccept)
         self.acceptButton.clicked.connect(self.changeSubButton)        
         self.acceptButton.clicked.connect(jsonMethod.dumpJSON)
 
@@ -190,15 +205,20 @@ class SettingsWidget(QWidget):
         self.setLayout(self.layout)
 
 
-    def changeDelay(self):
+    def updateSettingsAccept(self):
         """
         Receives and updates the new subtool menu delay value
         """
         menu_delayValue.value = self.subMenuDelay.value()
         jsonMethod.update_dict({"delayValue": menu_delayValue.value})
 
+        # Update the icon size
+        menu_iconSizeValue.value = self.iconSizeBox.value()
+        jsonMethod.update_dict({"iconSize": menu_iconSizeValue.value})
+
         for ToolButton in ToolList:
             ToolButton.setStyle(TKStyle("fusion"))
+            # ToolButton.updateIconSize() # this isn't updating the icon icon size until restart
 
 
     def changeSubButton(self):

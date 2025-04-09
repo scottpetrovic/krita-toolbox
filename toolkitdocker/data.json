@@ -1,4 +1,5 @@
 {
     "delayValue": 200,
-    "submenuButton": false
+    "submenuButton": false,
+    "iconSize": 16
 }

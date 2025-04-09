@@ -1,7 +1,9 @@
 from PyQt5.QtWidgets import QToolButton
 from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtCore import QSize
 
 from krita import *
+from toolkitdocker.json_class import json_class
 
 class ToolButton(QToolButton):
     """
@@ -24,8 +26,7 @@ class ToolButton(QToolButton):
         palette.setColor(QPalette.Button, QColor(74, 108, 134))
         self.setPalette(palette)
 
-        self.setMinimumSize(QSize(30, 30))
-        self.setIconSize(QSize(18, 18))
+        self.updateIconSize()
 
         self.setCheckable(True)
         self.setAutoRaise(True)
@@ -34,6 +35,13 @@ class ToolButton(QToolButton):
         self.setIcon(Application.icon(self.icon))
         self.setObjectName(self.actionName)
         self.setToolTip(i18n(self.toolName))
+
+    def updateIconSize(self):
+        jsonMethod = json_class()
+        iconSize = jsonMethod.loadJSON()["iconSize"]
+        buttonPadding = 10
+        self.setMinimumSize(QSize(iconSize + buttonPadding, iconSize + buttonPadding))
+        self.setIconSize(QSize(iconSize, iconSize))
 
     def enterEvent(self, event):
         super().enterEvent(event)
