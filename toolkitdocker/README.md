@@ -1,5 +1,5 @@
 # ToolKit (Readme shown in Krita)
-ToolKit acts as a minimal toolbox to store Krita's tools. It is meant to replace usage of the less customizable default Krita toolbox.
+ToolKit acts as a minimal toolbox to store Krita's tools. It is meant to replace usage of the less customizable default Krita toolbox. This repository was mostly written by someone else. Here is the original/abandoned repo. https://github.com/tubaca/ToolKit
 
 ## Install 
 Start Krita and go through the main menu Tools -> Scripts -> Import Python Plugin from Web.
