@@ -171,7 +171,7 @@ class SettingsWidget(QWidget):
         self.subButtonBox = QCheckBox()
         self.subButtonBox.setChecked(jsonMethod.existing_data["submenuButton"])
         
-        self.tab2.layout.addRow(i18n("&Icon Size (changes on restart):"), self.iconSizeBox)
+        self.tab2.layout.addRow(i18n("&Icon Size:"), self.iconSizeBox)
         self.tab2.layout.addRow(i18n("&Submenu Delay:"), self.subMenuDelay)        
         self.tab2.layout.addRow(i18n("&Submenu Button:"), self.subButtonBox)
 
@@ -218,7 +218,7 @@ class SettingsWidget(QWidget):
 
         for ToolButton in ToolList:
             ToolButton.setStyle(TKStyle("fusion"))
-            # ToolButton.updateIconSize() # this isn't updating the icon icon size until restart
+            ToolButton.updateIconSize() # this isn't updating the icon icon size until restart
 
 
     def changeSubButton(self):

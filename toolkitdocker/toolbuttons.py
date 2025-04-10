@@ -27,6 +27,7 @@ class ToolButton(QToolButton):
         self.setPalette(palette)
 
         self.updateIconSize()
+        
 
         self.setCheckable(True)
         self.setAutoRaise(True)
@@ -42,6 +43,8 @@ class ToolButton(QToolButton):
         buttonPadding = 10
         self.setMinimumSize(QSize(iconSize + buttonPadding, iconSize + buttonPadding))
         self.setIconSize(QSize(iconSize, iconSize))
+        self.repaint() # icons won't update unless we manually call repaint for some reason
+        
 
     def enterEvent(self, event):
         super().enterEvent(event)
